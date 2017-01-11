@@ -19,6 +19,10 @@ namespace Hello_XNA
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D m_Zaku2Unit;
+        Vector2 m_SpritePosition = Vector2.Zero;
+        Vector2 m_SpriteSpeed = new Vector2(50.0f, 50.0f);
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -46,7 +50,7 @@ namespace Hello_XNA
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            m_Zaku2Unit = Content.Load<Texture2D>("zaku2");
             // TODO: use this.Content to load your game content here
         }
 
@@ -84,6 +88,9 @@ namespace Hello_XNA
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            spriteBatch.Draw(m_Zaku2Unit, m_SpritePosition, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
