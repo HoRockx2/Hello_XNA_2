@@ -51,6 +51,7 @@ namespace Hello_XNA
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             m_Zaku2Unit = Content.Load<Texture2D>("zaku2");
+            System.Console.WriteLine("load content done");
             // TODO: use this.Content to load your game content here
         }
 
