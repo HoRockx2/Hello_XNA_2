@@ -71,7 +71,10 @@ namespace Hello_XNA
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            KeyboardState keyboardState = Keyboard.GetState();
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                || keyboardState.IsKeyDown(Keys.Escape))
                 this.Exit();
 
             // TODO: Add your update logic here
