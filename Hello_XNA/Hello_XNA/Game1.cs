@@ -51,6 +51,7 @@ namespace Hello_XNA
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             m_Zaku2Unit = Content.Load<Texture2D>("zaku2");
+            System.Console.WriteLine("load content done");
             // TODO: use this.Content to load your game content here
         }
 
@@ -78,8 +79,43 @@ namespace Hello_XNA
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            UpdateSprite(gameTime);
             base.Update(gameTime);
+        }
+
+        private void UpdateSprite(GameTime gameTiem)
+        {
+            System.Console.WriteLine("");
+            m_SpritePosition += m_SpriteSpeed * (float)gameTiem.ElapsedGameTime.TotalSeconds;
+
+            int MaxX = graphics.GraphicsDevice.Viewport.Width - m_Zaku2Unit.Width;
+            int MinX = 0;
+            int MaxY = graphics.GraphicsDevice.Viewport.Height - m_Zaku2Unit.Height;
+            int MinY = 0;
+
+            if (m_SpritePosition.X > MaxX)
+            {
+                m_SpriteSpeed.X *= -1;
+                m_SpritePosition.X = MaxX;
+            }
+
+            else if (m_SpritePosition.X < MinX)
+            {
+                m_SpriteSpeed.X *= -1;
+                m_SpritePosition.X = MinX;
+            }
+
+            if (m_SpritePosition.Y > MaxY)
+            {
+                m_SpriteSpeed.Y *= -1;
+                m_SpritePosition.Y = MaxY;
+            }
+
+            else if (m_SpritePosition.Y < MinY)
+            {
+                m_SpriteSpeed.Y *= -1;
+                m_SpritePosition.Y = MinY;
+            }
         }
 
         /// <summary>
