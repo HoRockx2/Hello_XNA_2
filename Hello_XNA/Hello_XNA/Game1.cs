@@ -17,23 +17,13 @@ namespace Hello_XNA
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        SpriteBatch m_SBForAnim;
+        Zaku m_Zaku;
+        Zaku m_Zaku2;
 
-        Texture2D m_Zaku2Unit;
-        Vector2 m_SpritePosition = Vector2.Zero;
-        Vector2 m_SpriteSpeed = new Vector2(50.0f, 50.0f);
-
-        Animate m_SpriteTexture; 
-        Viewport m_ViewPort;
-        Vector2 m_ShipPos;
-        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            
-            m_SpriteTexture = new AnimatedTexture(Vector2.Zero, 0, 2.0f, 0.5f);
         }
 
         /// <summary>
@@ -56,15 +46,8 @@ namespace Hello_XNA
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            m_Zaku2Unit = Content.Load<Texture2D>("zaku2");
-            System.Console.WriteLine("load content done");
-            
-            m_SBForAnim = new SpriteBatch(GraphicsDevice);
-            
-            m_SpriteTexture.load(Content, "shipAnim", 4, 2);
-            m_ViewPort = graphics.GraphicsDevice.Viewport;
-            m_ShipPos = new Vector2(m_ViewPort.Width / 2, m_ViewPort.Height / 2 );
+            m_Zaku = new Zaku(GraphicsDevice, Content);
+            m_Zaku2 = new Zaku(GraphicsDevice, Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -93,45 +76,8 @@ namespace Hello_XNA
                 this.Exit();
 
             // TODO: Add your update logic here
-            m_SpriteTexture.UpdateFrame(elapsed);
-            
-            UpdateSprite(gameTime);
+//            UpdateSprite(gameTime);
             base.Update(gameTime);
-        }
-
-        private void UpdateSprite(GameTime gameTiem)
-        {
-            System.Console.WriteLine("");
-            m_SpritePosition += m_SpriteSpeed * (float)gameTiem.ElapsedGameTime.TotalSeconds;
-
-            int MaxX = graphics.GraphicsDevice.Viewport.Width - m_Zaku2Unit.Width;
-            int MinX = 0;
-            int MaxY = graphics.GraphicsDevice.Viewport.Height - m_Zaku2Unit.Height;
-            int MinY = 0;
-
-            if (m_SpritePosition.X > MaxX)
-            {
-                m_SpriteSpeed.X *= -1;
-                m_SpritePosition.X = MaxX;
-            }
-
-            else if (m_SpritePosition.X < MinX)
-            {
-                m_SpriteSpeed.X *= -1;
-                m_SpritePosition.X = MinX;
-            }
-
-            if (m_SpritePosition.Y > MaxY)
-            {
-                m_SpriteSpeed.Y *= -1;
-                m_SpritePosition.Y = MaxY;
-            }
-
-            else if (m_SpritePosition.Y < MinY)
-            {
-                m_SpriteSpeed.Y *= -1;
-                m_SpritePosition.Y = MinY;
-            }
         }
 
         /// <summary>
@@ -143,14 +89,10 @@ namespace Hello_XNA
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            spriteBatch.Draw(m_Zaku2Unit, m_SpritePosition, Color.White);
-            spriteBatch.End();
+            Vector2.
 
-            m_SBForAnim.Begin();
-            m_SpriteTexture.DrawFrame(m_SBForAnim, m_ShipPos);
-            m_SBForAnim.End();
-
+            m_Zaku.Draw(Vector2.Zero);
+            m_Zaku2.Draw(Vector2.Zero + m_Zaku.VECTOR);
             base.Draw(gameTime);
         }
     }
