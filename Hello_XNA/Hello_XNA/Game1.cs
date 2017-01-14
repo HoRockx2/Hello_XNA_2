@@ -24,7 +24,7 @@ namespace Hello_XNA
         Vector2 m_SpritePosition = Vector2.Zero;
         Vector2 m_SpriteSpeed = new Vector2(50.0f, 50.0f);
 
-        AnimatedTexture m_SpriteTexture; 
+        Animate m_SpriteTexture; 
         Viewport m_ViewPort;
         Vector2 m_ShipPos;
         
