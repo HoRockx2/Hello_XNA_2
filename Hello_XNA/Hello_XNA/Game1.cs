@@ -18,15 +18,22 @@ namespace Hello_XNA
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteBatch m_SBForAnim;
 
         Texture2D m_Zaku2Unit;
         Vector2 m_SpritePosition = Vector2.Zero;
         Vector2 m_SpriteSpeed = new Vector2(50.0f, 50.0f);
 
+        AnimatedTexture m_SpriteTexture; 
+        Viewport m_ViewPort;
+        Vector2 m_ShipPos;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
+            m_SpriteTexture = new AnimatedTexture(Vector2.Zero, 0, 2.0f, 0.5f);
         }
 
         /// <summary>
@@ -52,6 +59,12 @@ namespace Hello_XNA
             spriteBatch = new SpriteBatch(GraphicsDevice);
             m_Zaku2Unit = Content.Load<Texture2D>("zaku2");
             System.Console.WriteLine("load content done");
+            
+            m_SBForAnim = new SpriteBatch(GraphicsDevice);
+            
+            m_SpriteTexture.load(Content, "shipAnim", 4, 2);
+            m_ViewPort = graphics.GraphicsDevice.Viewport;
+            m_ShipPos = new Vector2(m_ViewPort.Width / 2, m_ViewPort.Height / 2 );
             // TODO: use this.Content to load your game content here
         }
 
@@ -73,12 +86,15 @@ namespace Hello_XNA
         {
             // Allows the game to exit
             KeyboardState keyboardState = Keyboard.GetState();
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || keyboardState.IsKeyDown(Keys.Escape))
                 this.Exit();
 
             // TODO: Add your update logic here
+            m_SpriteTexture.UpdateFrame(elapsed);
+            
             UpdateSprite(gameTime);
             base.Update(gameTime);
         }
@@ -130,6 +146,10 @@ namespace Hello_XNA
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             spriteBatch.Draw(m_Zaku2Unit, m_SpritePosition, Color.White);
             spriteBatch.End();
+
+            m_SBForAnim.Begin();
+            m_SpriteTexture.DrawFrame(m_SBForAnim, m_ShipPos);
+            m_SBForAnim.End();
 
             base.Draw(gameTime);
         }
