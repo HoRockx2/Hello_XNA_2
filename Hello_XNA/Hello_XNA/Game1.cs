@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Hello_XNA.Tool;
 
 namespace Hello_XNA
 {
@@ -19,6 +20,10 @@ namespace Hello_XNA
         GraphicsDeviceManager graphics;
         Zaku m_Zaku;
         Zaku m_Zaku2;
+
+        Texture2D m_BackgroundImg;
+        SpriteBatch m_SpriteBatch;
+
 
         public Game1()
         {
@@ -46,8 +51,13 @@ namespace Hello_XNA
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            m_Zaku = new Zaku(GraphicsDevice, Content);
-            m_Zaku2 = new Zaku(GraphicsDevice, Content);
+
+            m_SpriteBatch = new SpriteBatch(GraphicsDevice);
+            m_BackgroundImg = Content.Load<Texture2D>("starfield");
+
+            m_Zaku = new Zaku(m_SpriteBatch, Content);
+            m_Zaku2 = new Zaku(m_SpriteBatch, Content);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -76,7 +86,7 @@ namespace Hello_XNA
                 this.Exit();
 
             // TODO: Add your update logic here
-//            UpdateSprite(gameTime);
+            m_Zaku.UpdateFrame((float)gameTime.ElapsedGameTime.TotalSeconds);
             base.Update(gameTime);
         }
 
@@ -89,10 +99,17 @@ namespace Hello_XNA
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            Vector2.
+            Vector2 position = new Vector2(50, 50);
+
+            m_SpriteBatch.Begin();
+            m_SpriteBatch.Draw(m_BackgroundImg, Vector2.Zero, Vector2.Zero, 0.9f);
+            m_SpriteBatch.End();
 
             m_Zaku.Draw(Vector2.Zero);
-            m_Zaku2.Draw(Vector2.Zero + m_Zaku.VECTOR);
+            m_Zaku2.Draw(position);
+
+
+
             base.Draw(gameTime);
         }
     }
