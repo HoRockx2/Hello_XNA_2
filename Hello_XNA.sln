@@ -5,20 +5,36 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_XNA", "Hello_XNA\Hello_XNA\Hello_XNA.csproj", "{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Hello_XNAContent", "Hello_XNA\Hello_XNAContent\Hello_XNAContent.contentproj", "{FEC84575-89B9-42F2-BCE6-1C71E82DF03B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_XNAContent", "Hello_XNA\Hello_XNAContent\Hello_XNAContent.contentproj", "{FEC84575-89B9-42F2-BCE6-1C71E82DF03B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugLogger", "DebugLogger.cs\DebugLogger.csproj", "{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}.Debug|x86.ActiveCfg = Debug|x86
 		{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}.Debug|x86.Build.0 = Debug|x86
+		{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}.Release|Any CPU.ActiveCfg = Release|x86
 		{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}.Release|x86.ActiveCfg = Release|x86
 		{19002AA9-A1D2-46BB-A400-DAD11DD7E8A7}.Release|x86.Build.0 = Release|x86
+		{FEC84575-89B9-42F2-BCE6-1C71E82DF03B}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{FEC84575-89B9-42F2-BCE6-1C71E82DF03B}.Debug|x86.ActiveCfg = Debug|x86
+		{FEC84575-89B9-42F2-BCE6-1C71E82DF03B}.Release|Any CPU.ActiveCfg = Release|x86
 		{FEC84575-89B9-42F2-BCE6-1C71E82DF03B}.Release|x86.ActiveCfg = Release|x86
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Debug|x86.Build.0 = Debug|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Release|x86.ActiveCfg = Release|Any CPU
+		{C3A42254-FC2C-42BA-9CAF-D097C8FAF968}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

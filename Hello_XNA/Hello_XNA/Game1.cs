@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
 using Hello_XNA.Tool;
+using DebugLogger;
 
 namespace Hello_XNA
 {
@@ -24,6 +26,7 @@ namespace Hello_XNA
         Texture2D m_BackgroundImg;
         SpriteBatch m_SpriteBatch;
 
+//        List<Rectangle> m_UnitsArea = new List<Rectangle>();
 
         public Game1()
         {
@@ -40,7 +43,7 @@ namespace Hello_XNA
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -55,9 +58,10 @@ namespace Hello_XNA
             m_SpriteBatch = new SpriteBatch(GraphicsDevice);
             m_BackgroundImg = Content.Load<Texture2D>("starfield");
 
-            m_Zaku = new Zaku(m_SpriteBatch, Content);
-            m_Zaku2 = new Zaku(m_SpriteBatch, Content);
+            m_Zaku = new Zaku(m_SpriteBatch, Content, "Zaku 1");
+            m_Zaku2 = new Zaku(m_SpriteBatch, Content, "Zaku 2");
 
+            CDebugLogger.DEBUG_LOG("LoadContent is Done");
             // TODO: use this.Content to load your game content here
         }
 
@@ -79,11 +83,17 @@ namespace Hello_XNA
         {
             // Allows the game to exit
             KeyboardState keyboardState = Keyboard.GetState();
+            MouseState ms =  Mouse.GetState();
+
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || keyboardState.IsKeyDown(Keys.Escape))
                 this.Exit();
+            if (ms.LeftButton == ButtonState.Pressed)
+            {
+                CheckClicked(new Point(ms.X, ms.Y));
+            }
 
             // TODO: Add your update logic here
             m_Zaku.UpdateFrame((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -97,7 +107,7 @@ namespace Hello_XNA
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+//            m_UnitsArea.Clear();
             // TODO: Add your drawing code here
             Vector2 position = new Vector2(50, 50);
 
@@ -108,9 +118,13 @@ namespace Hello_XNA
             m_Zaku.Draw(Vector2.Zero);
             m_Zaku2.Draw(position);
 
-
-
             base.Draw(gameTime);
+        }
+
+        private void CheckClicked(Point clickedPoint)
+        {
+            m_Zaku.CheckClicked(clickedPoint);
+            m_Zaku2.CheckClicked(clickedPoint);
         }
     }
 }

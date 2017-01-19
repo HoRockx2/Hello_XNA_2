@@ -68,6 +68,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DebugLogger.cs\DebugLogger.csproj">
+      <Project>{c3a42254-fc2c-42ba-9caf-d097c8faf968}</Project>
+      <Name>DebugLogger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hello_XNAContent\Hello_XNAContent.contentproj">
       <Name>Hello_XNAContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
